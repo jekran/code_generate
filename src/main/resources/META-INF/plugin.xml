@@ -1,0 +1,70 @@
+<idea-plugin>
+    <!-- 插件唯一id，不能和其他插件项目重复，所以推荐使用com.xxx.xxx的格式 插件不同版本之间不能更改，若没有指定，则与插件名称相同 -->
+    <id>com.cqry.java.code.generate.plugin.id</id>
+    <!-- 插件名称，别人在官方插件库搜索你的插件时使用的名称 -->
+    <name>Java CG</name>
+    <!-- 插件版本号 -->
+    <version>1.0.0</version>
+    <!-- 供应商主页和email（不能使用默认值，必须修改成自己的）-->
+    <vendor email="cqry_2016@163.com" url="https://github.com/jekran/code_generate">turkeyRan</vendor>
+    <!-- 插件的描述 （不能使用默认值，必须修改成自己的。并且需要大于40个字符）-->
+    <description>
+        <![CDATA[
+        <p> Introduction: Java Code Generator,Solve the problem of writing code repeatedly. </p>
+        <p> in the project, please address: /src/main/resources/config configuration database links. </p>
+        <p> Template file address and source address：https://github.com/jekran/code_generate.</p>
+        <p> Enumeration class rules: (1: test 1, 2: test 2), cut brackets, and need be separated by commas, semicolon first for code, second for description. </p>
+        <p> Enumeration class rules all symbols must be Chinese symbols. </p>
+        <p> If you have any questions, please contact the author at cqry_2016@163.com. </p>
+        <p> github https://github.com/jekran/code_generate. </p>
+        <p> Welcome to my personal blog https://juejin.cn/user/171985540491934/posts. </p>
+    ]]>
+    </description>
+    <!-- 插件版本变更信息，支持HTML标签；
+           将展示在 settings | Plugins 对话框和插件仓库的Web页面 -->
+<!--    <change-notes>-->
+<!--        Fix win Chinese garbled code-->
+<!--    </change-notes>-->
+
+    <!-- 插件兼容IDEAbuild 号-->
+    <idea-version since-build="203.5981.155"/>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- 声明该插件对IDEA core或其他插件的扩展 -->
+        <notificationGroup id="message" displayType="BALLOON" />
+    </extensions>
+
+    <!-- 编写插件动作 -->
+    <actions>
+        <!--下面的group是分组，分组需要有一个唯一的id标识，text用来控制分组出现在IDEA时呈现的文案，description是描述，不会展现出来，简单描述下分组就行-->
+        <group id="PluginTest" text="代码生成" description="CodeGenerator">
+<!--            <add-to-group group-id="MainMenu" anchor="last"/>-->
+            <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewGroup1"/>-->
+            <!--这个用来指定一个分组下的触发动作，同样的需要一个id，自定义；class就是用来处理这个动作的逻辑类，具体的插件逻辑都会写到对应的action类里，text用来控制文案，description为描述-->
+            <action id="Plugin.Test.Action"
+                    class="com.cg.action.CgAction"
+                    text="代码生成" description="代码生成"/>
+            <action id="Plugin.Test.SgAction"
+                    class="com.cg.action.SingletonAction"
+                    text="单例模式" description="单例模式"/>
+            <action id="Plugin.Test.STAction"
+                    class="com.cg.action.StrategyAction"
+                    text="策略模式" description="策略模式"/>
+            <action id="Plugin.Test.CoAction"
+                    class="com.cg.action.CommonAction"
+                    text="装饰模式" description="装饰模式"/>
+        </group>
+    </actions>
+<!--    <application-components>-->
+<!--        &lt;!&ndash; 添加应用程序组件 &ndash;&gt;-->
+<!--        <component>-->
+<!--            <implementation-class>com.cg.action.old.CodeComponent</implementation-class>-->
+<!--        </component>-->
+<!--    </application-components>-->
+
+    <!-- 模块 -->
+    <depends>com.intellij.modules.java-capable</depends>
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+</idea-plugin>
