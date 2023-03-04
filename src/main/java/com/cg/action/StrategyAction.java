@@ -96,8 +96,8 @@ public class StrategyAction extends BaseAnAction {
                     default:
                         break;
             }
-
-            MyNotifier.notifyInformation(this.getProject(), "代码生成成功，请刷新目录");
+            getProject().getBaseDir().refresh(false, true);
+            MyNotifier.notifyInformation(this.getProject(), "代码生成成功");
         } catch (Exception e) {
             e.printStackTrace();
         }

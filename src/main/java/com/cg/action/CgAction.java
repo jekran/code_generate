@@ -55,11 +55,11 @@ public class CgAction extends BaseAnAction {
             try {
                 String[] includeS = map.get("include").toString().split(",");
                 for (String s : includeS) {
-                    MyNotifier.notifyInformation(this.getProject(), "开始生成代码表名" + s);
                     //重写代码生成器
                     CodeGenerate.foundCode(this.getProject(), s, String.valueOf(map.get("moduleName")), String.valueOf(map.get("author")), map, path);
                 }
-                MyNotifier.notifyInformation(this.getProject(), "代码生成成功，请刷新目录");
+                getProject().getBaseDir().refresh(false, true);
+                MyNotifier.notifyInformation(this.getProject(), "代码生成成功");
             } catch (FileNotFoundException e) {
                 MyNotifier.notifyError(this.getProject(), "未找到对应文件：" + e.getMessage());
                 e.printStackTrace();

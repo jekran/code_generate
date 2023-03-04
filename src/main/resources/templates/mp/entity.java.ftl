@@ -12,13 +12,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.baomidou.mybatisplus.annotation.*;
 <#list enumsList as e>
-    import ${packageName}.entity.enums.${ClassName}${e.bigName}Enum;
+import ${packageName}.entity.enums.${ClassName}${e.bigName}Enum;
 </#list>
 <#assign b = 0>
 /**
-* @author:  ${author}
-* @since:   ${date}
-*/
+ * @author:  ${author}
+ * @since:   ${date}
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
@@ -38,18 +38,18 @@ public class ${ClassName} extends EntityBase {
     <#else>
 
         <#if item.dataType == "LocalDateTime">
-            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-            @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
         </#if>
-        @ApiModelProperty(value = "${item.columnComment}")
+    @ApiModelProperty(value = "${item.columnComment}")
         <#list enumsList as e>
             <#if item.columnName == e.smallName>
-                private ${ClassName}${e.bigName}Enum ${item.columnName};
+    private ${ClassName}${e.bigName}Enum ${item.columnName};
                 <#assign b = 1>
             </#if>
         </#list>
         <#if b = 0>
-            private ${item.dataType} ${item.columnName};
+    private ${item.dataType} ${item.columnName};
         </#if>
         <#assign b = 0>
     </#if>
