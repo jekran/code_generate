@@ -46,37 +46,6 @@ intellij {
 
 tasks {
 
-
-//    jar {
-//        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-////        manifest {
-////            attributes("Main-Class" to "value1")
-//////            attributes("Class-Path" to configurations.runtimeClasspath.get().files.map { "${it.name}" }
-//////                .joinToString(" "))
-////        }
-////        archiveClassifier.set("fat")
-//
-////        from(sourceSets.main.get().output)
-//
-////        dependsOn(configurations.runtimeClasspath)
-////        from({
-////            configurations.runtimeClasspath.get().filter { it.isDirectory() }.map { zipTree(it) }
-//////            configurations.runtimeClasspath.get().filter { !it.isDirectory() }.map { it }
-//////            configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
-////        }).into("lib/")
-//
-//        from({
-//            configurations.compileClasspath .get().filter { it.isDirectory() }.map { zipTree(it) }
-//            configurations.compileClasspath.get().filter { !it.isDirectory() }.map { it }
-////            configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
-//        })
-//
-//
-//
-////        from(configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it)})
-//    }
-
-
     // Set the JVM compatibility versions
     withType<JavaCompile> {
         sourceCompatibility = "11"
@@ -95,6 +64,6 @@ tasks {
     }
 
     publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
+        token.set(System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken"))
     }
 }
