@@ -20,7 +20,7 @@ public class CgDialog extends DialogWrapper {
     public CgDialog(@Nullable Project project, CgAction action) {
         super(true);
         this.action = action;
-        setTitle("表单测试~~"); //设置会话框标题
+        setTitle("代码生成~~"); //设置会话框标题
         setSize(600, 200);
         this.projectName = project.getName(); //获取到当前项目的名称
         init(); //触发一下init方法，否则swing样式将无法展示在会话框

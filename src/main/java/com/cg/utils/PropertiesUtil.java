@@ -10,7 +10,7 @@ public class PropertiesUtil extends Properties {
     }
 
     public static PropertiesUtil getMySqlProperties(String path) throws Exception {
-        propertiesUtil.load(PropertiesUtil.getInputStreamReader(path + "/src/main/resources/config/cg_config.properties"));
+        propertiesUtil.load(PropertiesUtil.getInputStreamReader(path + "/src/main/resources/cg_config.properties"));
         return propertiesUtil;
     }
 
