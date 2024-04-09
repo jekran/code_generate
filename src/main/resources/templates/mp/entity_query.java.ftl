@@ -1,6 +1,6 @@
 package ${packageName}.entity.query;
 
-
+import com.gb.util.PageParam;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -48,17 +48,6 @@ public class ${ClassName}Query extends PageParam implements Serializable {
     </#if>
     </#list>
 
-    @ApiModelProperty(value = "显示字段")
-    private String fields;
-
-    @ApiModelProperty(value = "排序规则(0:desc,1:asc)")
-    private Boolean collation;
-
-    @ApiModelProperty(value = "排序字段")
-    private String collationFields = "create_date_time";
-
-    @ApiModelProperty(value = "模糊查询")
-    private String query;
 <#if beanQuery??>
     <#list beanQuery as bq>
 

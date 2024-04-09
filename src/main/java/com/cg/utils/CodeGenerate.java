@@ -31,7 +31,7 @@ public class CodeGenerate {
         //数据库
         String database = propertiesUtil.getProperty("database");
         //包地址
-        String packageName = propertiesUtil.getProperty("packageName") + "." + moduleName;
+        String packageName = propertiesUtil.getProperty("packageName") + "." + moduleName + "." + table.replaceAll("_", "");
         String resultName = propertiesUtil.getProperty("resultName");
         String resultPackage = propertiesUtil.getProperty("resultPackage");
         String returnCodeName = propertiesUtil.getProperty("returnCodeName");
@@ -213,7 +213,7 @@ public class CodeGenerate {
                 }
 
                 /**
-                 * 生成VO类
+                 * 生成BO类
                  */
                 //FreeMarkers模板地址
                 Template beanTemplateBO = cfg.getTemplate("entity_bo.java.ftl");

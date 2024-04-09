@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.cg"
-version = "1.0-SNAPSHOT"
+version = "1.0.1"
 
 repositories {
     mavenLocal()
@@ -38,6 +38,7 @@ dependencies {
 
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
+    updateSinceUntilBuild.set(false)
     version.set("2021.2")
     type.set("IC") // Target IDE Platform
     plugins.set(listOf("com.intellij.java", "org.jetbrains.kotlin"))
@@ -54,7 +55,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("212")
-        untilBuild.set("222.*")
+//        untilBuild.set("222.*")
     }
 
     signPlugin {

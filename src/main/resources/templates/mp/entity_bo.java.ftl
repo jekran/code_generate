@@ -7,12 +7,15 @@ import lombok.Data;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 <#list enumsList as e>
 import ${packageName}.entity.enums.${ClassName}${e.bigName}Enum;
 </#list>
 
+<#assign ignore_column = ["createDateTime", "createName", "modifyDateTime"
+, "modifyName", "isDelete", "state", "sorting", "version"]>
 <#assign b = 0>
 /**
  * @author:  ${author}
@@ -22,10 +25,12 @@ import ${packageName}.entity.enums.${ClassName}${e.bigName}Enum;
 @ApiModel(value = "${functionName}传输")
 public class ${ClassName}BO implements Serializable {
 	<#list list as item>
+        <#if ignore_column?seq_contains(item.columnName)>
+        <#else>
 
     @ApiModelProperty(value = "${item.columnComment}")
     <#if item.columnName == "id">
-    @NotBlank(groups = {${ClassName}BO.Update.class,${ClassName}BO.Remove.class},message = "id不能为空")
+    @NotNull(groups = {${ClassName}BO.Update.class,${ClassName}BO.Remove.class},message = "id不能为空")
     </#if>
     <#if item.dataType == "LocalDateTime">
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -41,6 +46,7 @@ public class ${ClassName}BO implements Serializable {
     private ${item.dataType} ${item.columnName};
     </#if>
     <#assign b = 0>
+    </#if>
     </#list>
 
 

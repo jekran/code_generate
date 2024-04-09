@@ -1,5 +1,6 @@
 package ${packageName}.service.impl;
 
+import com.gb.utils.GeneralConvertor;
 import ${packageName}.entity.query.${ClassName}Query;
 import ${packageName}.entity.vo.${ClassName}VO;
 import ${packageName}.entity.bo.${ClassName}BO;
@@ -49,6 +50,7 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${C
     public Page<${ClassName}VO> pageEnhance(${ClassName}Query ${className}Query) {
         ${ClassName} ${className} = GeneralConvertor.convertor(${className}Query, ${ClassName}.class);
         QueryWrapper<${ClassName}> queryWrapper = new QueryWrapper<>(${className});
+        queryWrapper.orderByDesc("create_date_time");
         //DO数据
         Page<${ClassName}> pageDO = ${className}Mapper.selectPage(${className}Query.getPage(), queryWrapper);
         //VO数据
@@ -90,7 +92,7 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${C
    */
    @Override
    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, timeout = 36000, rollbackFor = Exception.class)
-   public String saveEnhance(${ClassName}BO ${className}BO) {
+   public Long saveEnhance(${ClassName}BO ${className}BO) {
        ${ClassName} ${className} = GeneralConvertor.convertor(${className}BO, ${ClassName}.class);
        ${className}Mapper.insert(${className});
        return ${className}.getId();

@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import ${packageName}.entity.enums.${ClassName}${e.bigName}Enum;
 </#list>
 
+<#assign ignore_column = ["createDateTime", "createName", "modifyDateTime"
+, "modifyName", "isDelete", "state", "sorting", "version"]>
 <#assign b = 0>
 /**
  * @author:  ${author}
@@ -21,21 +23,24 @@ import ${packageName}.entity.enums.${ClassName}${e.bigName}Enum;
 @ApiModel(value = "${functionName}渲染")
 public class ${ClassName}VO implements Serializable {
 	<#list list as item>
+        <#if ignore_column?seq_contains(item.columnName)>
+        <#else>
 
     @ApiModelProperty(value = "${item.columnComment}")
-    <#if item.dataType == "LocalDateTime">
+        <#if item.dataType == "LocalDateTime">
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    </#if>
-    <#list enumsList as e>
+        </#if>
+        <#list enumsList as e>
         <#if item.columnName == e.smallName>
     private ${ClassName}${e.bigName}Enum ${item.columnName};
             <#assign b = 1>
         </#if>
-    </#list>
-    <#if b = 0>
+        </#list>
+        <#if b = 0>
     private ${item.dataType} ${item.columnName};
-    </#if>
-    <#assign b = 0>
+        </#if>
+        <#assign b = 0>
+        </#if>
     </#list>
 }

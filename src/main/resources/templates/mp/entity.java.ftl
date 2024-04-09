@@ -1,6 +1,7 @@
 package ${packageName}.entity;
 
 
+import com.gb.bean.EntityBase;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;

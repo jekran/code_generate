@@ -1,5 +1,7 @@
 package ${packageName}.controller;
 
+import com.gb.utils.annotations.RequestRequired;
+import com.gb.utils.annotations.PreventRepeat;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -15,8 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.validation.annotation.Validated;
-import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import ${packageName}.service.${ClassName}Service;
 import ${packageName}.entity.query.${ClassName}Query;
 import ${packageName}.entity.vo.${ClassName}VO;
@@ -30,9 +30,9 @@ import ${resultPackage}.${resultName};
 * @since:  ${date}
 */
 @Slf4j
-@ApiSupport(author = "${author}")
 @Setter(onMethod_ = {@Autowired})
 @RestController
+@RequestRequired
 @RequestMapping("/${className}")
 @Api(tags = "${functionName}")
 public class ${ClassName}Controller {
@@ -86,7 +86,6 @@ private ${ClassName}Service ${className}Service;
     */
     @PreventRepeat
     @ApiOperation(value = "${functionName}新增", httpMethod = "POST", notes = "${functionName}新增", response = ${resultName}.class)
-    @ApiOperationSupport(ignoreParameters = {"id","createDateTime","createName","modifyDateTime","modifyName","isDelete","version"})
     @PostMapping("/save")
     public ${resultName}<String> save(@Validated(value = ${ClassName}BO.Save.class) ${ClassName}BO ${className}BO, HttpServletRequest httpServletRequest) {
         //返回内容
@@ -103,7 +102,6 @@ private ${ClassName}Service ${className}Service;
     */
     @PreventRepeat
     @ApiOperation(value = "${functionName}修改", httpMethod = "PUT", notes = "${functionName}修改", response = ${resultName}.class)
-    @ApiOperationSupport(ignoreParameters = {"createDateTime","createName","modifyDateTime","modifyName","isDelete","version"})
     @PutMapping("/update")
     public ${resultName}<Boolean> update(@Validated(value = ${ClassName}BO.Update.class) ${ClassName}BO ${className}BO, HttpServletRequest httpServletRequest) {
         //返回内容
@@ -119,7 +117,6 @@ private ${ClassName}Service ${className}Service;
     * @since ${date}
     */
     @ApiOperation(value = "${functionName}删除", httpMethod = "DELETE", notes = "${functionName}删除", response = ${resultName}.class)
-    @ApiOperationSupport(includeParameters = {"id"})
     @DeleteMapping("/remove")
     public ${resultName}<Boolean> remove(@Validated(value = ${ClassName}BO.Remove.class) ${ClassName}BO ${className}BO) {
         return new ${resultName}(${successCodeName}, ${className}Service.removeEnhance(${className}BO));

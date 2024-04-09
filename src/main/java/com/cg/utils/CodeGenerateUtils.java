@@ -155,7 +155,7 @@ public class CodeGenerateUtils {
         } else if (sqlType.equalsIgnoreCase("Integer")) {
             return "Integer";
         } else if (sqlType.equalsIgnoreCase("bigint")) {
-            return "Integer";
+            return "Long";
         } else if (sqlType.equalsIgnoreCase("float")) {
             return "Float";
         } else if (sqlType.equalsIgnoreCase("double")) {

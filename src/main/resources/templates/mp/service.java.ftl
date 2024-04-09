@@ -44,7 +44,7 @@ public interface ${ClassName}Service extends IService<${ClassName}> {
      * @param   ${className}BO:
      * @return  java.lang.String
      */
-     String saveEnhance(${ClassName}BO ${className}BO);
+     Long saveEnhance(${ClassName}BO ${className}BO);
 
 
      /**
